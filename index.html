@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Oluwatimileyin Pelumi — GoHighLevel Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000000;
+    --card: #0c0c0c;
+    --border: #232323;
+    --text: #F2F1ED;
+    --muted: #8C8C8C;
+    --accent: #6E6BFF;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+  }
+  ::selection { background: var(--accent); color: #fff; }
+  a { color: inherit; }
+  input::placeholder, textarea::placeholder { color: #5a5a5a; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- top bar ---------- */
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 26px 24px 0;
+  }
+  .email-pill {
+    border: 1px solid var(--border); border-radius: 999px;
+    padding: 9px 18px; font-size: 13px; color: var(--muted); text-decoration: none;
+  }
+  .wordmark { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 18px; letter-spacing: -0.01em; }
+  .socials { display: flex; gap: 10px; }
+  .social-icon {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; color: var(--text); flex-shrink: 0;
+  }
+  .social-icon svg { width: 15px; height: 15px; }
+  .social-icon.sm { width: 30px; height: 30px; }
+  .social-icon.sm svg { width: 13px; height: 13px; }
+
+  /* ---------- reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 70px 24px 0; text-align: center; }
+  .avatar {
+    width: 84px; height: 84px; border-radius: 50%; margin: 0 auto 30px;
+    background: linear-gradient(155deg, #1a1a1a, #050505);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; color: var(--accent);
+  }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 4.2rem); letter-spacing: -0.02em; line-height: 1.05; margin: 0;
+  }
+  .hero h2 {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 500;
+    font-size: clamp(1.4rem, 3.4vw, 2.1rem); color: var(--muted); margin: 6px 0 0;
+  }
+  .divider { width: 64px; height: 2px; background: var(--border); margin: 26px auto; }
+  .stats { display: flex; justify-content: center; gap: 64px; }
+  .stat-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 30px; }
+  .stat-label { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .hero-ctas { display: flex; justify-content: center; gap: 14px; margin-top: 42px; flex-wrap: wrap; }
+  .btn-solid, .btn-outline {
+    font-size: 14px; font-weight: 600; padding: 12px 24px; border-radius: 999px;
+    text-decoration: none; display: inline-block; border: 1px solid var(--border);
+  }
+  .btn-solid { color: #000; background: var(--text); border: none; cursor: pointer; }
+  .btn-outline { color: var(--text); background: transparent; }
+
+  /* ---------- tool strip ---------- */
+  .tool-strip { background: #111116; margin-top: 70px; padding: 26px 24px; }
+  .tool-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
+  .tool-badge {
+    width: 46px; height: 46px; border-radius: 10px; background: #1b1b22;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; color: #c9c9d4;
+  }
+
+  /* ---------- pill label ---------- */
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px;
+    font-size: 13px; font-weight: 500; margin-bottom: 30px;
+  }
+  .pill svg { width: 14px; height: 14px; color: var(--accent); }
+
+  section.block { padding: 90px 0 0; }
+  section.block:last-of-type { padding-bottom: 110px; }
+
+  /* ---------- about ---------- */
+  .about-row { display: flex; gap: 22px; align-items: flex-start; }
+  .about-avatar {
+    width: 56px; height: 56px; border-radius: 50%; background: #111116; border: 1px solid var(--border);
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--accent); font-size: 15px;
+  }
+  .about-row p { font-size: 15.5px; line-height: 1.75; color: var(--muted); margin: 0; }
+
+  /* ---------- services ---------- */
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .service-card { border: 1px solid var(--border); border-radius: 10px; padding: 22px; }
+  .service-card .t { font-weight: 600; font-size: 15px; margin-bottom: 8px; }
+  .service-card .d { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+
+  /* ---------- portfolio ---------- */
+  .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .project-card {
+    border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+    transition: transform .25s ease, border-color .25s ease;
+  }
+  .project-card:hover { transform: translateY(-3px); border-color: #3a3a44; }
+  .project-preview { height: 150px; padding: 16px; position: relative; }
+  .dots { display: flex; gap: 6px; margin-bottom: 14px; }
+  .dots span { width: 8px; height: 8px; border-radius: 50%; background: #ffffff33; display: inline-block; }
+  .bar-lg { width: 70%; height: 8px; background: #ffffff26; border-radius: 4px; margin-bottom: 8px; }
+  .bar-sm { width: 45%; height: 8px; background: #ffffff1a; border-radius: 4px; }
+  .project-body { padding: 16px 18px 18px; }
+  .project-title { font-weight: 600; font-size: 14.5px; margin-bottom: 10px; }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag {
+    font-size: 11px; color: var(--muted); border: 1px solid var(--border); border-radius: 999px;
+    padding: 3px 10px; transition: color .25s;
+  }
+  .project-card:hover .tag { color: var(--accent); }
+
+  /* ---------- contact ---------- */
+  .form-row { display: flex; gap: 16px; }
+  .field { display: flex; flex-direction: column; gap: 7px; flex: 1; margin-bottom: 16px; }
+  .field label { font-size: 12.5px; color: var(--muted); }
+  .field input, .field textarea {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 14px; color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; outline: none;
+    resize: vertical;
+  }
+  #contact-success { display: none; font-size: 15px; padding: 20px 0; }
+  .send-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 4px; }
+  .send-btn svg { width: 14px; height: 14px; }
+
+  /* ---------- footer ---------- */
+  footer { background: #0a0a0a; padding: 30px 24px; margin-top: 0; }
+  .footer-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-copy { font-size: 12.5px; color: var(--muted); }
+
+  @media (max-width: 640px) {
+    .topbar { flex-direction: column; gap: 14px; }
+    .email-pill { order: 2; }
+    .about-row { flex-direction: column; }
+    .services-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .form-row { flex-direction: column; gap: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="email-pill" href="mailto:aduoluwatimileyinpelumi@gmail.com">aduoluwatimileyinpelumi@gmail.com</a>
+  <div class="wordmark">@Highleveltycoon</div>
+  <div class="socials">
+    <a class="social-icon" href="#" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+    <a class="social-icon" href="#" aria-label="Twitter">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4.5s-.9.6-2.7 1.2A4.4 4.4 0 0 0 12.6 9c0 .35.04.7.1 1A12.4 12.4 0 0 1 2.4 4.9a4.3 4.3 0 0 0 1.4 5.8 4.3 4.3 0 0 1-2-.55v.06a4.4 4.4 0 0 0 3.5 4.3 4.4 4.4 0 0 1-2 .08 4.4 4.4 0 0 0 4.1 3A8.8 8.8 0 0 1 1 19.1a12.4 12.4 0 0 0 6.7 2c8 0 12.4-6.6 12.4-12.4v-.56A8.8 8.8 0 0 0 23 4.5z"/></svg>
+    </a>
+    <a class="social-icon" href="#" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="avatar reveal">OP</div>
+  <h1 class="reveal">Oluwatimileyin Pelumi</h1>
+  <h2 class="reveal">GoHighLevel Specialist</h2>
+  <div class="divider reveal"></div>
+  <div class="stats reveal">
+    <div>
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Years of experience</div>
+    </div>
+    <div>
+      <div class="stat-num">25+</div>
+      <div class="stat-label">Submitted projects</div>
+    </div>
+  </div>
+  <div class="hero-ctas reveal">
+    <a href="#portfolio" class="btn-solid">View Portfolio</a>
+    <a href="#contact" class="btn-outline">Get In Touch</a>
+  </div>
+</section>
+
+<div class="tool-strip">
+  <div class="tool-row">
+    <div class="tool-badge">GHL</div>
+    <div class="tool-badge">n8n</div>
+    <div class="tool-badge">Twilio</div>
+    <div class="tool-badge">OpenAI</div>
+    <div class="tool-badge">Zapier</div>
+    <div class="tool-badge">Make</div>
+    <div class="tool-badge">Stripe</div>
+  </div>
+</div>
+
+<section class="block narrow" id="about">
+  <div class="pill reveal">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg>
+    About
+  </div>
+  <div class="about-row reveal">
+    <div class="about-avatar">OP</div>
+    <p>I'm Oluwatimileyin, a GoHighLevel Specialist with 3+ years of experience building CRMs, AI voice agents and lead follow-up systems for service businesses and agencies. I focus on one outcome — every lead gets captured, qualified and followed up with automatically, without your team lifting a finger. Over 25 projects in, my approach hasn't changed: understand how the business actually sells, then build the system around it.</p>
+  </div>
+</section>
+
+<section class="block narrow" id="services">
+  <div class="pill reveal">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 4.6L3 17.2 6.8 21l6.3-6.3a4 4 0 0 0 4.6-5.4l-2.9 2.9-2-2z"/></svg>
+    Services
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="t">GoHighLevel Systems</div>
+      <div class="d">CRM setup, pipelines, funnels, calendars and workflow automation.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="t">AI Voice &amp; Chat Agents</div>
+      <div class="d">AI receptionists and chatbots that qualify leads in real time.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="t">Lead Follow-Up</div>
+      <div class="d">Automated SMS, email and voice sequences that never go cold.</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="t">Integrations</div>
+      <div class="d">APIs, webhooks and third-party tools connected into one system.</div>
+    </div>
+  </div>
+</section>
+
+<section class="block narrow" id="portfolio">
+  <div class="pill reveal">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    Portfolio
+  </div>
+  <div class="portfolio-grid">
+    <div class="project-card reveal">
+      <div class="project-preview" style="background:#3a2f1a;">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div class="bar-lg"></div><div class="bar-sm"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">AI Receptionist for a Home Services Co.</div>
+        <div class="tags"><span class="tag">GoHighLevel</span><span class="tag">Twilio</span><span class="tag">OpenAI</span></div>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-preview" style="background:#1a2f3a;">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div class="bar-lg"></div><div class="bar-sm"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">GHL Lead Automation for a Real Estate Team</div>
+        <div class="tags"><span class="tag">GoHighLevel</span><span class="tag">Zapier</span></div>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-preview" style="background:#241a3a;">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div class="bar-lg"></div><div class="bar-sm"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">n8n Workflow for a SaaS Support Desk</div>
+        <div class="tags"><span class="tag">n8n</span><span class="tag">Webhooks</span></div>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-preview" style="background:#1a3a24;">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div class="bar-lg"></div><div class="bar-sm"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">SMS Follow-Up System for a Dental Clinic</div>
+        <div class="tags"><span class="tag">Twilio</span><span class="tag">GoHighLevel</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block narrow" id="contact">
+  <div class="pill reveal">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L7.9 9.9a16 16 0 0 0 6 6l1.4-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2.1z"/></svg>
+    Contact
+  </div>
+
+  <div id="contact-success">Message received — I'll reply within one business day.</div>
+
+  <form id="contact-form" class="reveal">
+    <div class="form-row">
+      <div class="field">
+        <label for="fname">First Name</label>
+        <input id="fname" type="text" placeholder="Your first name" required />
+      </div>
+      <div class="field">
+        <label for="lname">Last Name</label>
+        <input id="lname" type="text" placeholder="Your last name" required />
+      </div>
+    </div>
+    <div class="field">
+      <label for="email">Email Address</label>
+      <input id="email" type="email" placeholder="Your email address" required />
+    </div>
+    <div class="field">
+      <label for="message">Message</label>
+      <textarea id="message" rows="5" placeholder="Leave us a message..."></textarea>
+    </div>
+    <button type="submit" class="btn-solid send-btn">
+      Send
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </form>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="wordmark">@Highleveltycoon</div>
+    <div class="socials">
+      <a class="social-icon sm" href="#" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a class="social-icon sm" href="#" aria-label="Twitter">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4.5s-.9.6-2.7 1.2A4.4 4.4 0 0 0 12.6 9c0 .35.04.7.1 1A12.4 12.4 0 0 1 2.4 4.9a4.3 4.3 0 0 0 1.4 5.8 4.3 4.3 0 0 1-2-.55v.06a4.4 4.4 0 0 0 3.5 4.3 4.4 4.4 0 0 1-2 .08 4.4 4.4 0 0 0 4.1 3A8.8 8.8 0 0 1 1 19.1a12.4 12.4 0 0 0 6.7 2c8 0 12.4-6.6 12.4-12.4v-.56A8.8 8.8 0 0 0 23 4.5z"/></svg>
+      </a>
+      <a class="social-icon sm" href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
+    <div class="footer-copy">Copyrights. Made with ♥ by Oluwatimileyin</div>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach((el) => io.observe(el));
+
+  // contact form (front-end only — no server wired up)
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('contact-success');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    form.style.display = 'none';
+    success.style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
